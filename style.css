@@ -1,0 +1,271 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0E0C32;
+  margin: 0; 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1; 
+}
+
+.content {
+  height: auto;
+  min-height: 600px;
+  padding: 20px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 20px;
+  background: #d4a900;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+}
+
+.nav-links a {
+  text-align: right;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: white;
+  transform: scale(2);
+}
+
+.logo {
+  width: 66px;
+  height: 66px;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.title h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.title p {
+  font-size: 12px;
+  color: black;
+}
+
+.banner {
+  width: 100%;
+  height: 500px;
+  background: url('images/Cars.jpg') center/cover no-repeat;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  padding: 15px 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn.primary {
+  background: #d4a900;
+  color: black;
+}
+
+.btn.primary:hover {
+  background: #b89600;
+}
+
+.btn.secondary {
+  background: #ddd;
+  color: black;
+}
+
+.btn.secondary:hover {
+  background: #c5c5c5;
+}
+
+.footer {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  font-size: 11px;
+  width: 100%;
+  margin-top: auto; /* Ensures it stays at the bottom of the container */
+}
+
+/*about*/
+.about-hero {
+  height: 510px;
+  background: url('images/about.jpg') center/cover no-repeat;
+}
+
+.about-section {
+  background: #d4a900;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: #d4a900;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-links {
+    margin-left: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .banner {
+    height: 300px;
+  }
+
+  .about-hero {
+    height: 200px;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn:hover, 
+  .nav-links a:hover {
+    transform: scale(1.1); 
+  }
+}
+
+/* --- Contact Page --- */
+
+.contact-hero {
+  background: whitesmoke; 
+  color: black;
+  text-align: center;
+  padding: 80px 20px 120px 20px; 
+}
+
+.contact-hero h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: -60px auto 60px auto; /* Negative margin creates the overlap */
+  padding: 0 20px;
+}
+
+.contact-card {
+  background: #d4a900;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+}
+
+.contact-card h3 {
+  color: black;
+  margin: 15px 0 10px 0;
+  font-size: 22px;
+}
+
+.contact-card p {
+  color: black;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 20px;
+}
+
+.card-link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.card-icon {
+  font-size: 28px;
+}
