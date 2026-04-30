@@ -7,19 +7,21 @@
 
 body {
   background: #0E0C32;
-  margin: 0; 
-  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* This forces the body to be at least the height of the screen */
   display: flex;
   flex-direction: column;
 }
 
+/* --- MAIN LAYOUT CONTAINER AH --- */
 .container {
   width: 100%;
   max-width: 2000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  flex: 1; 
+  flex: 1; /* This acts like a spring, pushing the footer to the bottom */
 }
 
 .content {
@@ -28,6 +30,7 @@ body {
   padding: 20px;
 }
 
+/* --- HEADER AT NAVIGATION --- */
 .header {
   position: sticky;
   top: 0;
@@ -59,6 +62,7 @@ body {
   transform: scale(2);
 }
 
+/* --- LOGO & TITLE AH --- */
 .logo {
   width: 66px;
   height: 66px;
@@ -81,12 +85,14 @@ body {
   color: black;
 }
 
+/* --- HOME PAGE HERO AND BANNER YES --- */
 .banner {
   width: 100%;
   height: 500px;
   background: url('images/Cars.jpg') center/cover no-repeat;
 }
 
+/* --- BUTTON STYLES WOWOW --- */
 .buttons {
   display: flex;
   gap: 15px;
@@ -126,17 +132,19 @@ body {
   background: #c5c5c5;
 }
 
+/* --- ONLY FOOTS SECTION --- */
 .footer {
   background: black;
   color: white;
   text-align: center;
-  padding: 14px;
+  padding: 20px;
   font-size: 11px;
   width: 100%;
-  margin-top: auto; /* Ensures it stays at the bottom of the container */
+  /* Removed margin-bottom or negative margins */
+  margin-top: auto; 
 }
 
-/*about*/
+/* --- ABOUT PAGE --- */
 .about-hero {
   height: 510px;
   background: url('images/about.jpg') center/cover no-repeat;
@@ -162,51 +170,7 @@ body {
   border-radius: 20px;
 }
 
-@media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-
-  .header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .nav-links {
-    margin-left: 0;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .banner {
-    height: 300px;
-  }
-
-  .about-hero {
-    height: 200px;
-  }
-
-  .buttons {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .btn:hover, 
-  .nav-links a:hover {
-    transform: scale(1.1); 
-  }
-}
-
-/* --- Contact Page --- */
-
+/* --- CONTACT PAGE --- */
 .contact-hero {
   background: whitesmoke; 
   color: black;
@@ -224,7 +188,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   max-width: 1100px;
-  margin: -60px auto 60px auto; /* Negative margin creates the overlap */
+  margin: -60px auto 60px auto; /* Creates the overlap effect */
   padding: 0 20px;
 }
 
@@ -268,4 +232,65 @@ body {
 
 .card-icon {
   font-size: 28px;
+}
+
+/* --- RESPONSIVESs --- */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column; 
+    padding: 10px;
+    height: auto;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr; /* Forces exactly 1 column on phones */
+    margin-top: -30px; /* Adjusts the overlap for smaller screens */
+  }
+  .contact-card {
+    padding: 20px; /* Reduces padding so the text doesn't get squeezed */
+  }
+  .nav-links {
+    margin-left: 0;
+    margin-top: 10px;
+    display: flex; 
+    flex-direction: row; /* THIS makes it horizontal */
+    justify-content: center;
+    gap: 10px; /* Reduced gap to save space */
+    width: 100%;
+  }
+  .nav-links a {
+    font-size: 12px; /* Smaller font so they stay on one line */
+    padding: 5px 8px;
+    min-width: auto; /* Allow them to shrink as much as needed */
+  }
+  .logo {
+    width: 50px; /* Smaller logo for mobile */
+    height: 50px;
+  }
+
+  .banner {
+    height: 300px;
+  }
+
+  .about-hero {
+    height: 200px;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+}
+
+/* --- MOBILE SPECIFIC (Smaller PHONES) --- */
+@media (max-width: 380px) {
+  .nav-links {
+    gap: 5px; /* Even tighter spacing for tiny screens */
+  }
+  
+  .nav-links a {
+    font-size: 11px;
+  }
 }
