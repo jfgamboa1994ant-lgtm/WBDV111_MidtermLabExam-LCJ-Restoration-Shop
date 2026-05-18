@@ -4,41 +4,239 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-   <title>LCJ Restoration Shop</title>
-
+  <title>LCJ Restoration Shop</title>
 </head>
 <body>
-
-    <div class="container">
+  <div class="container">
     <div class="header">
       <div class="logo">
-     <img src="images/Logo.jpg" alt="Logo">
+        <img src="images/Logo.jpg" alt="Logo">
       </div>
       <div class="title">
         <h1>RESTORATION SHOP</h1>
-        <p>Professional Car Repair Services</p>
+        <p>Professional Car Services</p>
       </div>
       <ul class="nav-links">
-        <strong><li><a href="#">Home</a></li></strong>
-        <strong><li><a href="index.html">Services</strong></a></li>
-        <strong><li><a href="https://maps.app.goo.gl/h3Euf9Ttp3gidxz6A" target="_blank">Location</a></li></strong>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
 
-    <div class="banner"></div>
-
-    <div class="buttons">
-      <a href="contact.html" class="btn primary">CONTACT US</a>
-      <a href="about.html#contact" class="btn primary">ABOUT US</a>
+    <div class="banner">
+      <div class="banner-slider">
+        <div class="banner-slide active" style="background-image: url('images/crs (1).jpg');"></div>
+        <div class="banner-slide" style="background-image: url('images/Cars.png');"></div>
+        <div class="banner-slide" style="background-image: url('images/crs (3).jpg');"></div>
+      </div>
+    </div>  
+    
+    <div class="banner-overlay">
+      <h2>We Pride Ourselves on Service</h2>
+      <p>Precision, Craftsmanship, and Quality Performance</p>
+      <a href="#inquiry" class="btn primary" style="display: inline-block;">BOOK NOW</a>
     </div>
-    <hr>
-
-
-    <footer class="footer">
-      <p>© 2026 Restoration Shop | All Rights Reserved</p>
-    </footer>
-
   </div>
+        
+  <section class="section-light extra-features">
+    <section id="services" class="section-light">   
+      <h2 class="section-title200">OUR SERVICES</h2>
+      <div class="about-grid">
+        <div class="card">
+          <h3>Wash Over</h3>
+          <p>Complete vehicle repainting designed to restore your car’s clean, fresh, and polished appearance</p>
+          <br>
+          <h4>₱25k - ₱60k</h4>
+        </div>
+        <div class="card">
+          <h3>Paint Job</h3>
+          <p>High-quality automotive painting services with<br> attention to detail and long-lasting finish</p>
+          <br>
+          <h4>₱3k - ₱5k</h4>
+        </div>
+        <div class="card">
+          <h3>Body Kits Repair</h3>
+          <p>Repair and restoration of damaged body<br> parts to improve both appearance and fitment</p>
+          <br>
+          <h4>₱1k - ₱5k</h4>
+        </div>
+        <div class="card">
+          <h3>General Car Repair</h3>
+          <p>Reliable repair and maintenance to make sure your vehicle running safely and efficiently</p>
+          <br>
+          <h4>₱500 - ₱100k</h4>
+        </div>
+      </div>
+    </section>
+      
+    <div class="transformation-grid">
+      <div class="service-box">
+        <input type="checkbox" id="toggle1" class="toggle-input" style="display: none;">
+        <div class="image-container">
+          <img src="images/CAR2.jpg" class="img-before" alt="Before">
+          <img src="images/CAR3.jpg" class="img-after" alt="After">
+          <div class="badge"></div>
+        </div>
+        <div class="info-content">
+          <h3>Vehicle Restoration</h3>
+          <br>
+          <label for="toggle1" class="btn primary">VIEW BEFORE / AFTER</label>
+        </div>
+      </div>
 
+      <div class="service-box">
+        <input type="checkbox" id="toggle2" class="toggle-input" style="display: none;">
+        <div class="image-container">
+          <img src="images/CAR4.jpg" class="img-before" alt="Before">
+          <img src="images/CAR5.jpg" class="img-after" alt="After">
+          <div class="badge"></div>
+        </div>
+        <div class="info-content">
+          <h3>Vehicle Customization</h3>
+          <br>
+          <label for="toggle2" class="btn primary">VIEW BEFORE / AFTER</label>
+        </div>
+      </div>
+    </div>
+  </section>
+   
+  <section id="inquiry" class="inquiry-page-section">
+    <h2 class="form-title">BOOKING</h2>
+    
+    <div class="inquiry-wrapper">
+      <div class="inquiry-form-container">
+        <form class="inquiry-form" id="bookingForm">
+          
+          <input 
+            type="text" 
+            id="fullName"
+            placeholder="Full Name" 
+            required 
+            pattern="^[A-Za-z\s]{3,50}$"
+            title="Name must contain only letters and spaces, and be at least 3 characters long.">
+          
+          <input 
+            type="email" 
+            id="emailAddress"
+            placeholder="Email Address" 
+            required 
+            title="Please enter a valid email address containing an '@'.">
+          
+          <select id="serviceSelect" required>
+            <option value="" disabled selected>Select Service</option>
+            <option value="wash-over">Wash Over</option>
+            <option value="paint-job">Paint Job</option>
+            <option value="engine-swap">Engine Swap</option>
+            <option value="general-repair">General Car Repair</option>
+          </select>
+          
+          <textarea 
+            id="projectDetails"
+            placeholder="Tell us about your project..." 
+            required
+            maxlength="600"
+            minlength="10"
+            title="Project details must be between 10 and 600 characters."></textarea>
+          
+          <button type="submit" class="btn INDEX">SEND</button>
+        </form>
+      </div>
+
+      <div class="services-info-container mini-slider-box">
+        <div class="video-wrapper" id="videoContainer">
+          <video class="mini-video active" muted playsinline autoplay>
+            <source src="images/video1.mp4" type="video/mp4">
+          </video>
+          <video class="mini-video" muted playsinline>
+            <source src="images/video2.mp4" type="video/mp4">
+          </video>
+          <video class="mini-video" muted playsinline>
+            <source src="images/video4.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* --- VIDEO AUTOMATIC SLIDER LOGIC --- */
+      const videos = document.querySelectorAll('.mini-video');
+      let currentVideoIndex = 0;
+
+      videos.forEach((video, index) => {
+        video.onended = function() {
+          video.classList.remove('active');
+          currentVideoIndex = (index + 1) % videos.length;
+          const nextVideo = videos[currentVideoIndex];
+          nextVideo.classList.add('active');
+          nextVideo.play().catch(error => console.log("Playback blocked:", error));
+        };
+      });
+
+      /* --- CLIENT-SIDE FORM SECURITY FILTER --- */
+      document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        // Stop default transmission to allow local evaluation
+        event.preventDefault();
+
+        const nameInput = document.getElementById('fullName').value.trim();
+        const emailInput = document.getElementById('emailAddress').value.trim();
+        const serviceSelect = document.getElementById('serviceSelect').value;
+        const detailsInput = document.getElementById('projectDetails').value.trim();
+
+        // Security check 1: Reject entries that consist strictly of empty spaces
+        if (nameInput === "" || emailInput === "" || detailsInput === "") {
+          alert("Error: Please fill out all fields. Spaces alone are not accepted.");
+          return;
+        }
+
+        // Security check 2: Strict drop-down list evaluation
+        if (serviceSelect === "") {
+          alert("Please pick a valid automotive service option from the list.");
+          return;
+        }
+
+        // Security check 3: Filter out basic single-word inputs or repeated gibberish keys
+        if (nameInput.split(/\s+/).length < 2) {
+          alert("Please enter your complete structural name (First and Last name).");
+          return;
+        }
+
+        // If the inputs bypass all programmatic filters successfully
+        alert("Success! Your booking request passed our validation check and was sent.");
+        this.reset(); // Safely clear form properties locally
+      });
+    </script>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>RESTORATION SHOP</h3>
+        <p>Professional vehicle restoration, repair, and customization services with quality craftsmanship and passion.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>QUICK LINKS</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>CONTACT INFO</h3>
+        <p>📍 Marikina, Metro Manila</p>
+        <p>📞 +639392110000</p>
+        <p>✉️ teamlcj@gmail.com</p>
+        <a href="https://www.facebook.com/teamLCJ" target="_blank" class="social-btn">Facebook Page</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Restoration Shop | All Rights Reserved</p>
+    </div>
+  </footer>
 </body>
 </html>

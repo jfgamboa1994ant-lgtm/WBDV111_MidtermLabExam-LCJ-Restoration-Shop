@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. GLOBAL & ROOT LAYOUT STYLES
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -9,19 +12,18 @@ body {
   background: #0E0C32;
   margin: 0;
   padding: 0;
-  min-height: 100vh; /* This forces the body to be at least the height of the screen */
+  min-height: 100vh; /* Forces body height to match viewport */
   display: flex;
   flex-direction: column;
 }
 
-/* --- MAIN LAYOUT CONTAINER AH --- */
 .container {
   width: 100%;
   max-width: 2000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  flex: 1; /* This acts like a spring, pushing the footer to the bottom */
+  flex: 1; /* Pushes footer downward */
 }
 
 .content {
@@ -30,9 +32,11 @@ body {
   padding: 20px;
 }
 
-/* --- HEADER AT NAVIGATION --- */
+
+/* ==========================================================================
+   2. SITE HEADER & NAVIGATION BRANDING
+   ========================================================================== */
 .header {
-  position: sticky;
   top: 0;
   z-index: 1000;
   display: flex;
@@ -42,27 +46,6 @@ body {
   background: #d4a900;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin-left: auto;
-}
-
-.nav-links a {
-  text-align: right;
-  text-decoration: none;
-  color: black;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-.nav-links a:hover {
-  color: white;
-  transform: scale(2);
-}
-
-/* --- LOGO & TITLE AH --- */
 .logo {
   width: 66px;
   height: 66px;
@@ -85,14 +68,30 @@ body {
   color: black;
 }
 
-/* --- HOME PAGE HERO AND BANNER YES --- */
-.banner {
-  width: 100%;
-  height: 500px;
-  background: url('images/Cars.jpg') center/cover no-repeat;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
 }
 
-/* --- BUTTON STYLES WOWOW --- */
+.nav-links a {
+  text-align: right;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: white;
+  transform: scale(2);
+}
+
+
+/* ==========================================================================
+   3. REUSABLE COMPONENTS (BUTTONS & UNIVERSAL CARDS)
+   ========================================================================== */
 .buttons {
   display: flex;
   gap: 15px;
@@ -110,11 +109,12 @@ body {
 }
 
 .btn:hover {
-  transform: scale(2);
+  transform: scale(1.15);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.btn.primary {
+.btn.primary,
+.btn.INDEX {
   background: #d4a900;
   color: black;
 }
@@ -132,29 +132,362 @@ body {
   background: #c5c5c5;
 }
 
-/* --- ONLY FOOTS SECTION --- */
-.footer {
-  background: black;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 11px;
-  width: 100%;
-  /* Removed margin-bottom or negative margins */
-  margin-top: auto; 
+.card {
+  background: #d4a900;
+  padding: 30px;
+  border-radius: 20px;
 }
 
-/* --- ABOUT PAGE --- */
+
+/* ==========================================================================
+   4. HOME PAGE HERO, HERO SLIDER & SECTION LAYOUTS
+   ========================================================================== */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+
+.banner-slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.banner-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: bannerFade 15s infinite;
+}
+
+.banner-slide:nth-child(1) { animation-delay: 0s; }
+.banner-slide:nth-child(2) { animation-delay: 5s; }
+.banner-slide:nth-child(3) { animation-delay: 10s; }
+
+@keyframes bannerFade {
+  0%   { opacity: 0; transform: scale(1); }
+  10%  { opacity: 1; }
+  30%  { opacity: 1; transform: scale(1.05); }
+  40%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.banner-overlay {
+  background: #0E0C32; 
+  padding: 50px; 
+  border-radius: 10px; 
+  color: white;
+}
+
+.banner-overlay h2 {
+  font-size: 3rem; 
+  margin-bottom: 10px;
+}
+
+.banner-overlay p {
+  font-size: 1.2rem; 
+  margin-bottom: 20px;
+}
+
+.section-light,
+.section-box {
+  padding: 80px 20px; 
+  background: #f4f4f4; 
+  text-align: center;
+}
+
+.section-title {
+  margin-bottom: 10px; 
+  color: #0E0C32;
+  margin-right: 50%;
+}
+
+.section-title200 {
+  margin-bottom: 20px; 
+  color: black;
+}
+
+
+/* ==========================================================================
+   5. SERVICES SECTION & BEFORE/AFTER INTERACTIVE SLIDES
+   ========================================================================== */
+.transformation-grid {
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+  gap: 40px; 
+  max-width: 1200px; 
+  margin: 0 auto;
+}
+
+.service-box {
+  background: #0E0C32;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 20px;
+}
+
+.image-container {
+  position: relative;
+  height: 350px;
+  background: black;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.4s ease;
+}
+
+.img-after { opacity: 0; }
+.img-before { opacity: 1; }
+
+.badge::after {
+  content: "BEFORE";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #d4a900;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 12px;
+  width: 10%;
+  height: 5%;
+}
+
+.toggle-input:checked ~ .image-container .img-after { opacity: 1; }
+.toggle-input:checked ~ .image-container .img-before { opacity: 0; }
+
+.toggle-input:checked ~ .image-container .badge::after {
+  content: "AFTER";
+  background: #d4a900;
+  color: black;
+}
+
+.toggle-input:checked ~ .info-content .desc-text::after {
+  content: "Completed custom restoration (CAR3).";
+}
+
+.info-content {
+  padding: 25px;
+  text-align: left;
+  color: white;
+}
+
+
+/* ==========================================================================
+   6. EXTRA FEATURES SUB-SECTION
+   ========================================================================== */
+.extra-features {
+  background: #0E0C32;
+}
+
+.extra-features .section-title {
+  color: #d4a900;
+}
+
+.extra-features .card {
+  background: #1b184a;
+  color: white;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.extra-features .card:hover {
+  transform: translateY(-10px);
+  border-color: #d4a900;
+}
+
+.extra-features .card h3 {
+  color: #d4a900;
+  margin-bottom: 15px;
+}
+
+.extra-features .card p {
+  line-height: 1.7;
+  color: #ddd;
+}
+
+
+/* ==========================================================================
+   7. BOOKING & ESTIMATE INQUIRY SECTIONS
+   ========================================================================== */
+.inquiry-page-section {
+  padding: 80px 20px;
+  background: whitesmoke;
+}
+
+.form-title {
+  color: black;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.inquiry-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.inquiry-form-container {
+  flex: 1;
+  min-width: 320px;
+  max-width: 50%;
+  background: #0E0C32;
+  padding: 40px; 
+  border-radius: 20px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box; 
+}
+
+.services-info-container.mini-slider-box {
+  flex: 1;
+  min-width: 320px;
+  max-width: 50%;
+  background: #0E0C32;
+  border-radius: 12px; 
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 450px; 
+  height: auto; 
+}
+
+.inquiry-form input, 
+.inquiry-form select, 
+.inquiry-form textarea {
+  width: 100%;
+  padding: 18px; 
+  margin-bottom: 20px;
+  border: 3px solid #555;
+  border-radius: 10px;
+  font-size: 16px;
+  background: white;
+  display: block;
+  box-sizing: border-box;
+}
+
+.inquiry-form textarea {
+  height: 140px; 
+  resize: none;
+}
+
+.btn.INDEX {
+  width: 100%;
+  padding: 18px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+/* AUTOMATIC MINI SLIDER / VIDEO BOX STYLING */
+.video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.mini-video {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.mini-video.active {
+  display: block;
+  opacity: 1;
+  z-index: 10;
+}
+
+.mini-slide:nth-child(1) { animation-delay: 0s; z-index: 3; }
+.mini-slide:nth-child(2) { animation-delay: 4s; z-index: 2; }
+.mini-slide:nth-child(3) { animation-delay: 8s; z-index: 1; }
+
+@keyframes miniFade {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  33%  { opacity: 1; }
+  43%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+
+/* ==========================================================================
+   8. ABOUT PAGE CUSTOM STYLES
+   ========================================================================== */
 .about-hero {
   height: 510px;
   background: url('images/about.jpg') center/cover no-repeat;
 }
 
+.about-main-body {
+  background-color: white;
+  padding: 40px 0;
+  width: 100%;
+}
+
 .about-section {
-  background: #d4a900;
+  background: white;
   padding: 20px;
   border-radius: 20px;
   margin: 20px;
+}
+
+.about-main-body .about-section h2 {
+  color: black;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.about-main-body .about-section p {
+  color: white;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 40px auto;
+  font-size: 20px;
+  line-height: 1.6;
+  padding: 35px;
+  flex: 1;
+  background: #161245;
+  border-radius: 12px;
+  border-left: 5px solid #d4a900;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .about-grid {
@@ -164,13 +497,65 @@ body {
   padding: 20px;
 }
 
-.card {
-  background: #d4a900;
-  padding: 30px;
-  border-radius: 20px;
+/* SIDE-BY-SIDE WHITEOUT GRID CARD ROW WRAPPERS */
+.about-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* --- CONTACT PAGE --- */
+.about-row-item {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.about-row-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-row-item .card {
+  flex: 1;
+  background: #161245;
+  padding: 35px;
+  border-radius: 12px;
+  border-left: 5px solid #d4a900;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+}
+
+.about-row-item .card h3 {
+  color: #d4a900;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.about-row-item .card p {
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.about-pic-box {
+  flex: 1;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 240px;
+}
+
+
+/* ==========================================================================
+   9. CONTACT PAGE CUSTOM STYLES
+   ========================================================================== */
 .contact-hero {
   background: whitesmoke; 
   color: black;
@@ -188,7 +573,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   max-width: 1100px;
-  margin: -60px auto 60px auto; /* Creates the overlap effect */
+  margin: -60px auto 60px auto; 
   padding: 0 20px;
 }
 
@@ -234,7 +619,145 @@ body {
   font-size: 28px;
 }
 
-/* --- RESPONSIVESs --- */
+/* CONTACT SUBMIT FEEDBACK FORM LAYOUT */
+.contact-form-section {
+  background: #f4f4f4; 
+  text-align: center;
+}
+
+.contact-form-card {
+  max-width: 600px; 
+  margin: 0 auto; 
+  background: white; 
+  padding: 30px; 
+  border-radius: 12px; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.contact-form-input {
+  width: 100%; 
+  padding: 10px; 
+  margin-bottom: 15px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+}
+
+.contact-form-textarea {
+  width: 100%; 
+  padding: 10px; 
+  margin-bottom: 15px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  height: 100px; 
+  resize: none;
+}
+
+.contact-form-submit-btn {
+  width: 100%; 
+  border: none;
+}
+
+
+/* ==========================================================================
+   10. SITE FOOTER SECTION
+   ========================================================================== */
+.footer {
+  background: #08061f;
+  color: white;
+  margin-top: auto;
+  border-top: 4px solid #d4a900;
+  position: sticky;
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 50px 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.footer-section h3 {
+  color: #d4a900;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.footer-section p {
+  color: #ccc;
+  line-height: 1.8;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #ccc;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #d4a900;
+  padding-left: 5px;
+}
+
+.social-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #d4a900;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 25px;
+  transition: 0.3s ease;
+}
+
+.social-btn:hover {
+  background: white;
+  transform: scale(1.05);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+  color: #aaa;
+}
+
+
+/* --- TABLETS & LANDSCAPE RESPONSIVE  --- */
+@media (max-width: 850px) {
+  .inquiry-wrapper {
+    flex-direction: column; 
+    align-items: center;
+    gap: 25px;
+  }
+
+  .inquiry-form-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .services-info-container.mini-slider-box {
+    max-width: 100%;
+    width: 100%;
+    height: 350px;     
+    min-height: 350px; 
+  }
+}
+
+/* --- MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
   body {
     padding: 10px;
@@ -245,49 +768,73 @@ body {
     padding: 10px;
     height: auto;
   }
-  .contact-grid {
-    grid-template-columns: 1fr; /* Forces exactly 1 column on phones */
-    margin-top: -30px; /* Adjusts the overlap for smaller screens */
+
+  .logo {
+    width: 50px; 
+    height: 50px;
   }
-  .contact-card {
-    padding: 20px; /* Reduces padding so the text doesn't get squeezed */
-  }
+
   .nav-links {
     margin-left: 0;
     margin-top: 10px;
     display: flex; 
-    flex-direction: row; /* THIS makes it horizontal */
+    flex-direction: row; /* Horizontal conversion alignment */
     justify-content: center;
-    gap: 10px; /* Reduced gap to save space */
+    gap: 10px; 
     width: 100%;
   }
+
   .nav-links a {
-    font-size: 12px; /* Smaller font so they stay on one line */
+    font-size: 12px; 
     padding: 5px 8px;
-    min-width: auto; /* Allow them to shrink as much as needed */
-  }
-  .logo {
-    width: 50px; /* Smaller logo for mobile */
-    height: 50px;
+    min-width: auto; 
   }
 
   .banner {
     height: 300px;
   }
 
+  .buttons {
+    justify-content: center;
+  }
+
+  .footer-container {
+    text-align: center;
+  }
+
+  .footer-links {
+    padding: 0;
+  }
+
   .about-hero {
     height: 200px;
   }
 
-  .buttons {
-    justify-content: center;
+  /* About Card Layout Re-stacking */
+  .about-row-item, 
+  .about-row-item.reverse {
+    flex-direction: column;
+  }
+  
+  .about-pic-box {
+    height: 220px;
+    width: 100%;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr; 
+    margin-top: -30px; 
+  }
+
+  .contact-card {
+    padding: 20px; 
   }
 }
 
-/* --- MOBILE SPECIFIC (Smaller PHONES) --- */
+/* --- SMALL PHONES MEDIA QUERY (380px) --- */
 @media (max-width: 380px) {
   .nav-links {
-    gap: 5px; /* Even tighter spacing for tiny screens */
+    gap: 5px; 
   }
   
   .nav-links a {
