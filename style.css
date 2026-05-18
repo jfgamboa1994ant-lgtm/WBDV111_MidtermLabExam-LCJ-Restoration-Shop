@@ -1,6 +1,3 @@
-/* ==========================================================================
-   1. GLOBAL & ROOT LAYOUT STYLES
-   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -12,18 +9,19 @@ body {
   background: #0E0C32;
   margin: 0;
   padding: 0;
-  min-height: 100vh; /* Forces body height to match viewport */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* --- MAIN LAYOUT CONTAINER --- */
 .container {
   width: 100%;
   max-width: 2000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  flex: 1; /* Pushes footer downward */
+  flex: 1;
 }
 
 .content {
@@ -32,10 +30,7 @@ body {
   padding: 20px;
 }
 
-
-/* ==========================================================================
-   2. SITE HEADER & NAVIGATION BRANDING
-   ========================================================================== */
+/* --- HEADER AND NAVIGATION --- */
 .header {
   top: 0;
   z-index: 1000;
@@ -44,28 +39,6 @@ body {
   gap: 20px;
   padding: 15px 20px;
   background: #d4a900;
-}
-
-.logo {
-  width: 66px;
-  height: 66px;
-}
-
-.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.title h1 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.title p {
-  font-size: 12px;
-  color: black;
 }
 
 .nav-links {
@@ -88,60 +61,30 @@ body {
   transform: scale(2);
 }
 
-
-/* ==========================================================================
-   3. REUSABLE COMPONENTS (BUTTONS & UNIVERSAL CARDS)
-   ========================================================================== */
-.buttons {
-  display: flex;
-  gap: 15px;
-  padding: 15px 20px;
-  flex-wrap: wrap;
+/* --- LOGO & TITLE --- */
+.logo {
+  width: 66px;
+  height: 66px;
 }
 
-.btn {
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.title h1 {
+  font-size: 20px;
   font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn:hover {
-  transform: scale(1.15);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.btn.primary,
-.btn.INDEX {
-  background: #d4a900;
+.title p {
+  font-size: 12px;
   color: black;
 }
 
-.btn.primary:hover {
-  background: #b89600;
-}
-
-.btn.secondary {
-  background: #ddd;
-  color: black;
-}
-
-.btn.secondary:hover {
-  background: #c5c5c5;
-}
-
-.card {
-  background: #d4a900;
-  padding: 30px;
-  border-radius: 20px;
-}
-
-
-/* ==========================================================================
-   4. HOME PAGE HERO, HERO SLIDER & SECTION LAYOUTS
-   ========================================================================== */
+/* --- HOME PAGE HERO AND BANNER --- */
 .banner {
   position: relative;
   width: 100%;
@@ -170,497 +113,59 @@ body {
 .banner-slide:nth-child(3) { animation-delay: 10s; }
 
 @keyframes bannerFade {
-  0%   { opacity: 0; transform: scale(1); }
-  10%  { opacity: 1; }
-  30%  { opacity: 1; transform: scale(1.05); }
-  40%  { opacity: 0; }
+  0% { opacity: 0; transform: scale(1); }
+  10% { opacity: 1; }
+  30% { opacity: 1; transform: scale(1.05); }
+  40% { opacity: 0; }
   100% { opacity: 0; }
 }
 
-.banner-overlay {
-  background: #0E0C32; 
-  padding: 50px; 
-  border-radius: 10px; 
-  color: white;
-}
-
-.banner-overlay h2 {
-  font-size: 3rem; 
-  margin-bottom: 10px;
-}
-
-.banner-overlay p {
-  font-size: 1.2rem; 
-  margin-bottom: 20px;
-}
-
-.section-light,
-.section-box {
-  padding: 80px 20px; 
-  background: #f4f4f4; 
-  text-align: center;
-}
-
-.section-title {
-  margin-bottom: 10px; 
-  color: #0E0C32;
-  margin-right: 50%;
-}
-
-.section-title200 {
-  margin-bottom: 20px; 
-  color: black;
-}
-
-
-/* ==========================================================================
-   5. SERVICES SECTION & BEFORE/AFTER INTERACTIVE SLIDES
-   ========================================================================== */
-.transformation-grid {
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
-  gap: 40px; 
-  max-width: 1200px; 
-  margin: 0 auto;
-}
-
-.service-box {
-  background: #0E0C32;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border-radius: 20px;
-}
-
-.image-container {
-  position: relative;
-  height: 350px;
-  background: black;
-}
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 0.4s ease;
-}
-
-.img-after { opacity: 0; }
-.img-before { opacity: 1; }
-
-.badge::after {
-  content: "BEFORE";
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: #d4a900;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 12px;
-  width: 10%;
-  height: 5%;
-}
-
-.toggle-input:checked ~ .image-container .img-after { opacity: 1; }
-.toggle-input:checked ~ .image-container .img-before { opacity: 0; }
-
-.toggle-input:checked ~ .image-container .badge::after {
-  content: "AFTER";
-  background: #d4a900;
-  color: black;
-}
-
-.toggle-input:checked ~ .info-content .desc-text::after {
-  content: "Completed custom restoration (CAR3).";
-}
-
-.info-content {
-  padding: 25px;
-  text-align: left;
-  color: white;
-}
-
-
-/* ==========================================================================
-   6. EXTRA FEATURES SUB-SECTION
-   ========================================================================== */
-.extra-features {
-  background: #0E0C32;
-}
-
-.extra-features .section-title {
-  color: #d4a900;
-}
-
-.extra-features .card {
-  background: #1b184a;
-  color: white;
-  border: 2px solid transparent;
-  transition: 0.3s ease;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-}
-
-.extra-features .card:hover {
-  transform: translateY(-10px);
-  border-color: #d4a900;
-}
-
-.extra-features .card h3 {
-  color: #d4a900;
-  margin-bottom: 15px;
-}
-
-.extra-features .card p {
-  line-height: 1.7;
-  color: #ddd;
-}
-
-
-/* ==========================================================================
-   7. BOOKING & ESTIMATE INQUIRY SECTIONS
-   ========================================================================== */
-.inquiry-page-section {
-  padding: 80px 20px;
-  background: whitesmoke;
-}
-
-.form-title {
-  color: black;
-  text-align: center;
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-
-.inquiry-wrapper {
+/* --- BUTTON STYLES --- */
+.buttons {
   display: flex;
+  gap: 15px;
+  padding: 15px 20px;
   flex-wrap: wrap;
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: stretch;
 }
 
-.inquiry-form-container {
-  flex: 1;
-  min-width: 320px;
-  max-width: 50%;
-  background: #0E0C32;
-  padding: 40px; 
-  border-radius: 20px; 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box; 
+.btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.services-info-container.mini-slider-box {
-  flex: 1;
-  min-width: 320px;
-  max-width: 50%;
-  background: #0E0C32;
-  border-radius: 12px; 
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 450px; 
-  height: auto; 
+.btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.inquiry-form input, 
-.inquiry-form select, 
-.inquiry-form textarea {
-  width: 100%;
-  padding: 18px; 
-  margin-bottom: 20px;
-  border: 3px solid #555;
-  border-radius: 10px;
-  font-size: 16px;
-  background: white;
-  display: block;
-  box-sizing: border-box;
+.btn.primary {
+  background: #d4a900;
+  color: black;
 }
 
-.inquiry-form textarea {
-  height: 140px; 
-  resize: none;
+.btn.primary:hover {
+  background: #b89600;
+}
+
+.btn.secondary {
+  background: #ddd;
+  color: black;
+}
+
+.btn.secondary:hover {
+  background: #c5c5c5;
 }
 
 .btn.INDEX {
-  width: 100%;
-  padding: 18px;
-  border-radius: 30px;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  margin-top: 10px;
-}
-
-/* AUTOMATIC MINI SLIDER / VIDEO BOX STYLING */
-.video-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-}
-
-.mini-video {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.mini-video.active {
-  display: block;
-  opacity: 1;
-  z-index: 10;
-}
-
-.mini-slide:nth-child(1) { animation-delay: 0s; z-index: 3; }
-.mini-slide:nth-child(2) { animation-delay: 4s; z-index: 2; }
-.mini-slide:nth-child(3) { animation-delay: 8s; z-index: 1; }
-
-@keyframes miniFade {
-  0%   { opacity: 0; }
-  10%  { opacity: 1; }
-  33%  { opacity: 1; }
-  43%  { opacity: 0; }
-  100% { opacity: 0; }
-}
-
-
-/* ==========================================================================
-   8. ABOUT PAGE CUSTOM STYLES
-   ========================================================================== */
-.about-hero {
-  height: 510px;
-  background: url('images/about.jpg') center/cover no-repeat;
-}
-
-.about-main-body {
-  background-color: white;
-  padding: 40px 0;
-  width: 100%;
-}
-
-.about-section {
-  background: white;
-  padding: 20px;
-  border-radius: 20px;
-  margin: 20px;
-}
-
-.about-main-body .about-section h2 {
-  color: black;
-  font-size: 32px;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.about-main-body .about-section p {
-  color: white;
-  text-align: center;
-  width: 100%;
-  margin: 0 auto 40px auto;
-  font-size: 20px;
-  line-height: 1.6;
-  padding: 35px;
-  flex: 1;
-  background: #161245;
-  border-radius: 12px;
-  border-left: 5px solid #d4a900;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-  gap: 20px;
-  padding: 20px;
-}
-
-/* SIDE-BY-SIDE WHITEOUT GRID CARD ROW WRAPPERS */
-.about-container-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.about-row-item {
-  display: flex;
-  gap: 20px;
-  align-items: stretch;
-  width: 100%;
-}
-
-.about-row-item.reverse {
-  flex-direction: row-reverse;
-}
-
-.about-row-item .card {
-  flex: 1;
-  background: #161245;
-  padding: 35px;
-  border-radius: 12px;
-  border-left: 5px solid #d4a900;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0;
-}
-
-.about-row-item .card h3 {
-  color: #d4a900;
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-
-.about-row-item .card p {
-  color: #ffffff;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.about-pic-box {
-  flex: 1;
-  border-radius: 12px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 240px;
-}
-
-
-/* ==========================================================================
-   9. CONTACT PAGE CUSTOM STYLES
-   ========================================================================== */
-.contact-hero {
-  background: whitesmoke; 
-  color: black;
-  text-align: center;
-  padding: 80px 20px 120px 20px; 
-}
-
-.contact-hero h2 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  max-width: 1100px;
-  margin: -60px auto 60px auto; 
-  padding: 0 20px;
-}
-
-.contact-card {
   background: #d4a900;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease;
-}
-
-.contact-card:hover {
-  transform: translateY(-5px);
-}
-
-.contact-card h3 {
   color: black;
-  margin: 15px 0 10px 0;
-  font-size: 22px;
 }
 
-.contact-card p {
-  color: black;
-  font-size: 15px;
-  line-height: 1.6;
-  margin: 20px;
-}
-
-.card-link {
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.card-link:hover {
-  text-decoration: underline;
-}
-
-.card-icon {
-  font-size: 28px;
-}
-
-/* CONTACT SUBMIT FEEDBACK FORM LAYOUT */
-.contact-form-section {
-  background: #f4f4f4; 
-  text-align: center;
-}
-
-.contact-form-card {
-  max-width: 600px; 
-  margin: 0 auto; 
-  background: white; 
-  padding: 30px; 
-  border-radius: 12px; 
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.contact-form-input {
-  width: 100%; 
-  padding: 10px; 
-  margin-bottom: 15px; 
-  border: 1px solid #ddd; 
-  border-radius: 5px;
-}
-
-.contact-form-textarea {
-  width: 100%; 
-  padding: 10px; 
-  margin-bottom: 15px; 
-  border: 1px solid #ddd; 
-  border-radius: 5px; 
-  height: 100px; 
-  resize: none;
-}
-
-.contact-form-submit-btn {
-  width: 100%; 
-  border: none;
-}
-
-
-/* ==========================================================================
-   10. SITE FOOTER SECTION
-   ========================================================================== */
+/* --- FOOTER SECTION --- */
 .footer {
   background: #08061f;
   color: white;
@@ -735,8 +240,482 @@ body {
   color: #aaa;
 }
 
+/* --- ABOUT PAGE --- */
+.about-hero {
+  height: 510px;
+  background: url('images/about.jpg') center/cover no-repeat;
+}
 
-/* --- TABLETS & LANDSCAPE RESPONSIVE  --- */
+.about-section {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: #d4a900;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+/* --- ABOUT US WHITEOUT & ROW-ITEM VARIATIONS --- */
+.about-main-body {
+  background-color: white;
+  padding: 40px 0;
+  width: 100%;
+}
+
+.about-main-body .about-section h2 {
+  color: black;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.about-main-body .about-section p {
+  color: white;
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+  line-height: 1.6;
+  background: #161245;
+  padding: 35px;
+  border-radius: 12px;
+  border-left: 5px solid #d4a900;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto 40px auto;
+  flex: 1;
+}
+
+.about-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.about-row-item {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.about-row-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-row-item .card {
+  flex: 1;
+  background: #161245;
+  padding: 35px;
+  border-radius: 12px;
+  border-left: 5px solid #d4a900;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+}
+
+.about-row-item .card h3 {
+  color: #d4a900;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.about-row-item .card p {
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.about-pic-box {
+  flex: 1;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 240px;
+}
+
+/* --- CONTACT PAGE --- */
+.contact-hero {
+  background: whitesmoke; 
+  color: black;
+  text-align: center;
+  padding: 80px 20px 120px 20px; 
+}
+
+.contact-hero h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: -60px auto 60px auto; 
+  padding: 0 20px;
+}
+
+.contact-card {
+  background: #d4a900;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+}
+
+.contact-card h3 {
+  color: black;
+  margin: 15px 0 10px 0;
+  font-size: 22px;
+}
+
+.contact-card p {
+  color: black;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 20px;
+}
+
+.card-link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.card-icon {
+  font-size: 28px;
+}
+
+/* --- CONTACT FORM --- */
+.contact-form-section {
+  background: #f4f4f4; 
+  text-align: center;
+}
+
+.contact-form-card {
+  max-width: 600px; 
+  margin: 0 auto; 
+  background: white; 
+  padding: 30px; 
+  border-radius: 12px; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.contact-form-input {
+  width: 100%; 
+  padding: 10px; 
+  margin-bottom: 15px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+}
+
+.contact-form-textarea {
+  width: 100%; 
+  padding: 10px; 
+  margin-bottom: 15px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  height: 100px; 
+  resize: none;
+}
+
+.contact-form-submit-btn {
+  width: 100%; 
+  border: none;
+}
+
+/* --- SERVICES BEFORE / AFTER TRANSFORMATIONS --- */
+.service-box {
+  background: #0E0C32;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 20px;
+}
+
+.image-container {
+  position: relative;
+  height: 350px;
+  background: black;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.4s ease;
+}
+
+.info-content {
+  padding: 25px;
+  text-align: left;
+  color: white;
+}
+
+.img-after { opacity: 0; }
+.img-before { opacity: 1; }
+
+.badge::after {
+  content: "BEFORE";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #d4a900;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 12px;
+  width: 15%;
+  height: 5%;
+}
+
+.toggle-input:checked ~ .image-container .img-after { opacity: 1; }
+.toggle-input:checked ~ .image-container .img-before { opacity: 0; }
+
+.toggle-input:checked ~ .image-container .badge::after {
+  content: "AFTER";
+  background: #d4a900;
+  color: black;
+}
+
+.toggle-input:checked ~ .info-content .desc-text::after {
+  content: "Completed custom restoration (CAR3).";
+}
+
+/* --- EXTRA FEATURES SECTION --- */
+.extra-features {
+  background: #0E0C32;
+}
+
+.extra-features .section-title {
+  color: #d4a900;
+}
+
+.extra-features .card {
+  background: #1b184a;
+  color: white;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.extra-features .card:hover {
+  transform: translateY(-10px);
+  border-color: #d4a900;
+}
+
+.extra-features .card h3 {
+  color: #d4a900;
+  margin-bottom: 15px;
+}
+
+.extra-features .card p {
+  line-height: 1.7;
+  color: #ddd;
+}
+
+/* --- LAYOUT STRUCTURE & OVERLAYS --- */
+.banner-overlay {
+  background: #0E0C32; 
+  padding: 50px; 
+  border-radius: 10px; 
+  color: white;
+}
+
+.banner-overlay h2 {
+  font-size: 3rem; 
+  margin-bottom: 10px;
+}
+
+.banner-overlay p {
+  font-size: 1.2rem; 
+  margin-bottom: 20px;
+}
+
+.section-light, .section-box {
+  padding: 80px 20px; 
+  background: #f4f4f4; 
+  text-align: center;
+}
+
+.section-title {
+  margin-bottom: 10px; 
+  color: #0E0C32;
+  margin-right: 50%;
+}
+
+.section-title200 {
+  margin-bottom: 20px; 
+  color: black;
+}
+
+.transformation-grid {
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+  gap: 40px; 
+  max-width: 1200px; 
+  margin: 0 auto;
+}
+
+/* --- INQUIRY / BOOKING BOXES --- */
+.inquiry-page-section {
+  padding: 80px 20px;
+  background: whitesmoke;
+}
+
+.form-title {
+  color: black;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.inquiry-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: stretch; 
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.inquiry-form-container {
+  flex: 1;
+  min-width: 320px;
+  max-width: 580px;
+  background: #0E0C32;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box; 
+}
+
+.services-info-container.mini-slider-box {
+  flex: 1;
+  min-width: 320px;
+  max-width: 580px;
+  background: #0E0C32;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  height: auto; 
+  min-height: 450px;
+}
+
+.inquiry-form input, 
+.inquiry-form select, 
+.inquiry-form textarea {
+  width: 100%;
+  padding: 18px; 
+  margin-bottom: 20px;
+  border: 3px solid #555;
+  border-radius: 10px;
+  font-size: 16px;
+  background: white;
+  display: block;
+  box-sizing: border-box;
+}
+
+.inquiry-form textarea {
+  height: 140px; 
+  resize: none;
+}
+
+.btn.INDEX {
+  width: 100%;
+  background: #d4a900;
+  color: black;
+  padding: 18px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+/* --- MINI AUTOMATIC VIDEO SLIDER --- */
+.video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.mini-video {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.mini-video.active {
+  display: block;
+  opacity: 1;
+  z-index: 10;
+}
+
+.mini-slide:nth-child(1) { animation-delay: 0s; z-index: 3; }
+.mini-slide:nth-child(2) { animation-delay: 4s; z-index: 2; }
+.mini-slide:nth-child(3) { animation-delay: 8s; z-index: 1; }
+
+@keyframes miniFade {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  33%  { opacity: 1; }
+  43%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* --- GENERAL RESPONSIVE MEDIA QUERIES --- */
 @media (max-width: 850px) {
   .inquiry-wrapper {
     flex-direction: column; 
@@ -757,7 +736,6 @@ body {
   }
 }
 
-/* --- MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
   body {
     padding: 10px;
@@ -769,29 +747,33 @@ body {
     height: auto;
   }
 
-  .logo {
-    width: 50px; 
-    height: 50px;
-  }
-
   .nav-links {
     margin-left: 0;
     margin-top: 10px;
     display: flex; 
-    flex-direction: row; /* Horizontal conversion alignment */
+    flex-direction: row;
     justify-content: center;
-    gap: 10px; 
+    gap: 10px;
     width: 100%;
   }
 
   .nav-links a {
-    font-size: 12px; 
+    font-size: 12px;
     padding: 5px 8px;
-    min-width: auto; 
+    min-width: auto;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
   }
 
   .banner {
     height: 300px;
+  }
+
+  .about-hero {
+    height: 200px;
   }
 
   .buttons {
@@ -806,11 +788,15 @@ body {
     padding: 0;
   }
 
-  .about-hero {
-    height: 200px;
+  .contact-grid {
+    grid-template-columns: 1fr;
+    margin-top: -30px;
   }
 
-  /* About Card Layout Re-stacking */
+  .contact-card {
+    padding: 20px;
+  }
+
   .about-row-item, 
   .about-row-item.reverse {
     flex-direction: column;
@@ -820,21 +806,11 @@ body {
     height: 220px;
     width: 100%;
   }
-
-  .contact-grid {
-    grid-template-columns: 1fr; 
-    margin-top: -30px; 
-  }
-
-  .contact-card {
-    padding: 20px; 
-  }
 }
 
-/* --- SMALL PHONES MEDIA QUERY (380px) --- */
 @media (max-width: 380px) {
   .nav-links {
-    gap: 5px; 
+    gap: 5px;
   }
   
   .nav-links a {
