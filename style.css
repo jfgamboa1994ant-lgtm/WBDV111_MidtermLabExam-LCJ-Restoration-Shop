@@ -460,21 +460,37 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   border-radius: 20px;
 }
-
 .image-container {
   position: relative;
-  height: 350px;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%; 
+  min-height: 250px;   /* Prevents the image from becoming too small on narrow screens */
   background: black;
 }
 
 .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;   /* Changed from 'fill' to 'cover' to maintain proper vehicle proportions without distortion */
   position: absolute;
   top: 0;
   left: 0;
   transition: opacity 0.4s ease;
+}
+
+/* --- Locate your responsive media queries at the bottom and append this rule --- */
+@media (max-width: 768px) {
+  /* Forces the transformation grid rows to collapse nicely on phones */
+  .transformation-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+    padding: 0 10px;
+  }
+  
+  .image-container {
+    padding-top: 65%;  /* Gives a slightly taller vertical viewing area on mobile screens */
+  }
 }
 
 .info-content {
@@ -637,8 +653,9 @@ body {
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  /* Replaced absolute height values with self-stretching flex settings */
   height: auto; 
-  min-height: 450px;
+  align-self: stretch; 
 }
 
 .inquiry-form input, 

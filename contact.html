@@ -53,22 +53,12 @@
       </div>
     </div>
 
-
     <section class="content-section contact-form-section">
       <br>
       <br>
       <h2 class="section-title200">Inquire Here</h2>
       <div class="contact-form-card">
-        <form id="contactForm">
-          
-          <input 
-            type="text" 
-            id="contactName"
-            placeholder="Name" 
-            required
-            pattern="^[A-Za-z\s]{3,50}$"
-            title="Name must contain only letters and spaces, and be at least 3 characters long."
-            class="contact-form-input">
+        <form id="contactForm" novalidate>
           
           <input 
             type="email" 
@@ -97,26 +87,39 @@
     <script>
       document.getElementById('contactForm').addEventListener('submit', function(event) {
         event.preventDefault();
+        event.stopPropagation();
 
-        const nameInput = document.getElementById('contactName').value.trim();
+        let submissionPassed = true;
+
         const emailInput = document.getElementById('contactEmail').value.trim();
         const detailsInput = document.getElementById('contactDetails').value.trim();
 
-        if (nameInput === "" || emailInput === "" || detailsInput === "") {
-          alert("Error: Please fill out all fields. Spaces alone are not accepted.");
-          return;
+        if (emailInput === "" || detailsInput === "") {
+          alert("Submission Blocked: All fields must be filled out. Spaces alone are rejected.");
+          submissionPassed = false;
+        }
+        // Verification Layer 2: Rigid Gmail suffix check
+        else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput)) {
+          alert("Submission Blocked: You must provide a valid email address ending explicitly with @gmail.com");
+          submissionPassed = false;
+        }
+        else {
+          const spamRegex = /^(.)\1+$/;
+          if (spamRegex.test(detailsInput.replace(/\s/g, ''))) {
+            alert("Submission Blocked: Character spam detected in Details box. Please write a genuine explanation.");
+            submissionPassed = false;
+          }
         }
 
-        if (nameInput.split(/\s+/).length < 2) {
-          alert("Please enter your complete structural name (First and Last name).");
-          return;
+        if (!submissionPassed) {
+          return false;
         }
 
-        alert("Success! Your inquiry has passed security validation and was sent.");
+        alert("Success! Your inquiry has been sent for further validation.");
         this.reset();
+        return true;
       });
     </script>
-
 
     <footer class="footer">
       <div class="footer-container">

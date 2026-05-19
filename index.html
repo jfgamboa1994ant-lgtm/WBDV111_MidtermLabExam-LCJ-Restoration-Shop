@@ -106,15 +106,7 @@
     
     <div class="inquiry-wrapper">
       <div class="inquiry-form-container">
-        <form class="inquiry-form" id="bookingForm">
-          
-          <input 
-            type="text" 
-            id="fullName"
-            placeholder="Full Name" 
-            required 
-            pattern="^[A-Za-z\s]{3,50}$"
-            title="Name must contain only letters and spaces, and be at least 3 characters long.">
+        <form class="inquiry-form" id="bookingForm" novalidate>
           
           <input 
             type="email" 
@@ -133,7 +125,7 @@
           
           <textarea 
             id="projectDetails"
-            placeholder="Tell us about your project..." 
+            placeholder="Describe what you have in mind..." 
             required
             maxlength="600"
             minlength="10"
@@ -159,7 +151,6 @@
     </div>
 
     <script>
-      /* --- VIDEO AUTOMATIC SLIDER LOGIC --- */
       const videos = document.querySelectorAll('.mini-video');
       let currentVideoIndex = 0;
 
@@ -173,37 +164,43 @@
         };
       });
 
-      /* --- CLIENT-SIDE FORM SECURITY FILTER --- */
       document.getElementById('bookingForm').addEventListener('submit', function(event) {
-        // Stop default transmission to allow local evaluation
         event.preventDefault();
+        event.stopPropagation();
 
-        const nameInput = document.getElementById('fullName').value.trim();
+        let submissionPassed = true;
+
         const emailInput = document.getElementById('emailAddress').value.trim();
         const serviceSelect = document.getElementById('serviceSelect').value;
         const detailsInput = document.getElementById('projectDetails').value.trim();
 
-        // Security check 1: Reject entries that consist strictly of empty spaces
-        if (nameInput === "" || emailInput === "" || detailsInput === "") {
-          alert("Error: Please fill out all fields. Spaces alone are not accepted.");
-          return;
+        // Verification Layer 1: Force all fields to have contents
+        if (emailInput === "" || detailsInput === "") {
+          alert("Submission Blocked: All fields must be filled out. Spaces alone are rejected.");
+          submissionPassed = false;
+        }
+        else if (serviceSelect === "") {
+          alert("Submission Blocked: Please pick a valid automotive service option from the list.");
+          submissionPassed = false;
+        }
+        else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput)) {
+          alert("Submission Blocked: You must provide a valid email address that ends with e.g. @gmail.com");
+          submissionPassed = false;
+        }
+        else {
+          const spamRegex = /^(.)\1+$/;
+          if (spamRegex.test(detailsInput.replace(/\s/g, ''))) {
+            alert("Submission Blocked: Character spam detected in the Project Details field. Please write a genuine description.");
+            submissionPassed = false;
+          }
+        }
+        if (!submissionPassed) {
+          return false;
         }
 
-        // Security check 2: Strict drop-down list evaluation
-        if (serviceSelect === "") {
-          alert("Please pick a valid automotive service option from the list.");
-          return;
-        }
-
-        // Security check 3: Filter out basic single-word inputs or repeated gibberish keys
-        if (nameInput.split(/\s+/).length < 2) {
-          alert("Please enter your complete structural name (First and Last name).");
-          return;
-        }
-
-        // If the inputs bypass all programmatic filters successfully
-        alert("Success! Your booking request passed our validation check and was sent.");
-        this.reset(); // Safely clear form properties locally
+        alert("Success! Your booking request has been sent for further validation.");
+        this.reset(); 
+        return true;
       });
     </script>
   </section>
